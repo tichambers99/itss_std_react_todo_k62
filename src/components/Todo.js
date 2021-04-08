@@ -42,11 +42,16 @@ function Todo() {
      console.log(newItems)
     }
     
+    const onChangeInput = (newItem) => {
+      putItems([...items, newItem]);
+    }
+    
   return (
     <div className="panel">
         <div className="panel-heading">
           ITSS ToDoアプリ
         </div>
+        <Input onChangeInput={onChangeInput} items={items}/>
         {items.map(item => (
           <TodoItem
             key={item.key}
