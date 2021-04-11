@@ -27,6 +27,8 @@ function Todo() {
     /* テストコード 終了 */
   ]);
   
+  const [filterItems, setFilterItems] = useState(items);
+  
   const onItemClick = (item) => {
     var newItems = [];
     
@@ -39,12 +41,23 @@ function Todo() {
     }
     
      putItems(newItems);
-     console.log(newItems)
     }
     
     const onChangeInput = (newItem) => {
       putItems([...items, newItem]);
     }
+    
+    const handleOnFilterClick = (element) => {
+    if (element.text === "未完了") {
+      setFilterItems(items.filter((item) => item.done === false));
+    }
+    else if (element.text === "完了済み") {
+      setFilterItems(items.filter((item) => item.done === true));
+    }
+    else {
+      setFilterItems(items);
+    }
+  }
     
   return (
     <div className="panel">
@@ -52,7 +65,8 @@ function Todo() {
           ITSS ToDoアプリ
         </div>
         <Input onChangeInput={onChangeInput} items={items}/>
-        {items.map(item => (
+        <Filter onFilterClick={handleOnFilterClick} />
+        {filterItems.map(item => (
           <TodoItem
             key={item.key}
             item={item}

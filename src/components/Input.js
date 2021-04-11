@@ -17,7 +17,9 @@ function Input( {onChangeInput, items} ) {
   var onKeyUpInput = (event) => {
     if(event.keyCode === 13){ //key code of Enter key is 13
       valueInput.key = getKey();
+      // change state of items -> render list
       onChangeInput({key: valueInput.key, text: event.target.value.trim(), done: false});
+      // change value of input to reset to empty value
       putValueInput({key: "", text: "", done: false})
     }
   }
