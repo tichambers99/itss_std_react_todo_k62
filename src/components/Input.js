@@ -29,6 +29,7 @@ function Input( {onChangeInput, items} ) {
       <input
         class="input"
         type="text"
+        placeholder="Todoを入力してください"
         value={valueInput.text}
         onChange={event => handleChangeInput(event)}
         onKeyUp={event => onKeyUpInput(event)}
